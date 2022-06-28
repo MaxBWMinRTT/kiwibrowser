@@ -3,12 +3,7 @@ name: build apk
 
 # Controls when the action will run. Triggers the workflow on push or pull request events
 on:
-  workflow_dispatch:
-    inputs:
-      prepareRelease:
-        description: 'Create a draft release in Google Play Store'     
-        required: true
-        default: 'no'
+  - push
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -34,6 +29,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - uses: valeriangalliat/action-sshd-cloudflared@v1
+    
       - name: Initializing build
         run: echo Initializing build for platform ${{ matrix.platform }}
 
