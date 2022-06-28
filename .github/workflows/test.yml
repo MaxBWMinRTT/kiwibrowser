@@ -209,9 +209,9 @@ jobs:
       - name: Uploading binary objects to cache
         run: rclone copy --fast-list --transfers=32 $HOME/cache/ sync:kiwibrowser-ccache-${{ matrix.platform }}/
         
-      - name: spawn ssh server
-        if: always()
-        uses: valeriangalliat/action-sshd-cloudflared@v1
+      #- name: spawn ssh server
+      #  if: always()
+      #  uses: valeriangalliat/action-sshd-cloudflared@v1
       
 
 
