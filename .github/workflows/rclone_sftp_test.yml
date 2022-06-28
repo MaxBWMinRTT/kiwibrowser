@@ -52,8 +52,10 @@ jobs:
       - name: Downloading binary objects cache to $HOME/cache
         run: rclone copy --fast-list --transfers=128 cache:kiwibrowser-ccache-${{ matrix.platform }} $HOME/
 
+      - name: ls home
+        run: ls -lh $HOME/
+
       - name: Creating rclone config to upload the cache
-        if: ${{ github.repository_owner == 'kiwibrowser' }}
         run: |
           echo '[sync]' > $HOME/.config/rclone/rclone.conf
           echo 'type = sftp' >> $HOME/.config/rclone/rclone.conf
@@ -62,7 +64,6 @@ jobs:
           echo 'pass = ${{ secrets.SFTP_PASSWORD }}' >> $HOME/.config/rclone/rclone.conf
 
       - name: Uploading binary objects to cache
-        if: ${{ github.repository_owner == 'kiwibrowser' }}
         run: |
           echo "sfsf" > $HOME/github.file
           rclone copy --fast-list --transfers=32 $HOME/ sync:kiwibrowser-ccache-${{ matrix.platform }}/
