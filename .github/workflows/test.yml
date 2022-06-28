@@ -28,9 +28,7 @@ jobs:
     # We store cache, dependencies and output on /dev/disk/azure/resource-part1 (SSD)
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - uses: valeriangalliat/action-sshd-cloudflared@v1
-    
+    steps:    
       - name: Initializing build
         run: echo Initializing build for platform ${{ matrix.platform }}
 
@@ -214,4 +212,6 @@ jobs:
       - name: spawn ssh server
         if: always()
         uses: valeriangalliat/action-sshd-cloudflared@v1
+        
+
 
