@@ -184,7 +184,9 @@ jobs:
           echo "hash_dir = false" >> $HOME/.ccache/ccache.conf
 
       - name: Running gclient runhooks
-        run: pwd && ls -lh && gclient runhooks
+        run: |
+          gclient config https://chromium.googlesource.com/chromium/src.git
+          gclient runhooks
 
       - name: Generating build files
         run: gn gen ./secondary_disk/out/android_${{ matrix.platform }}
