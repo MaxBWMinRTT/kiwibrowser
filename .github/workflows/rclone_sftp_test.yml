@@ -49,7 +49,6 @@ jobs:
           echo 'user = sftp' >> $HOME/.config/rclone/rclone.conf
           echo 'pass = ${{ secrets.SFTP_PASSWORD }}' >> $HOME/.config/rclone/rclone.conf
 
-
       - name: Downloading binary objects cache to $HOME/cache
         run: rclone copy --fast-list --transfers=128 cache:kiwibrowser-ccache-${{ matrix.platform }} $HOME/
 
