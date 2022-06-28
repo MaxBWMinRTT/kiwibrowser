@@ -95,6 +95,7 @@ jobs:
       - name: Installing system dependencies
         run: |
           sudo bash install-build-deps.sh --no-chromeos-fonts --no-arm --no-nacl --no-backwards-compatible
+          build/linux/sysroot_scripts/install-sysroot.py --arch=i386
           build/linux/sysroot_scripts/install-sysroot.py --arch=amd64
 
       - name: Creating output folder
