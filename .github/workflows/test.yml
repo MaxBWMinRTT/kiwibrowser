@@ -193,7 +193,6 @@ jobs:
         run: df -h
 
       - name: Creating rclone config to upload the cache
-        if: ${{ github.repository_owner == 'kiwibrowser' }}
         run: |
           echo '[sync]' > $HOME/.config/rclone/rclone.conf
           echo 'type = sftp' >> $HOME/.config/rclone/rclone.conf
@@ -210,5 +209,4 @@ jobs:
         run: ninja -C ./secondary_disk/out/android_${{ matrix.platform }} base
 
       - name: Uploading binary objects to cache
-        if: ${{ github.repository_owner == 'kiwibrowser' }}
         run: rclone copy --fast-list --transfers=32 $HOME/cache/ sync:kiwibrowser-ccache-${{ matrix.platform }}/
